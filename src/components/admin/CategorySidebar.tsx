@@ -22,6 +22,7 @@ function CategorySidebar({
   );
 
   const isArabic = language === "ar";
+
   return (
     <>
       <button

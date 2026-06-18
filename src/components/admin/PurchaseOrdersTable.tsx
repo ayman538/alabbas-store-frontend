@@ -2,18 +2,20 @@ import type { PurchaseOrder } from "../../types/PurchaseOrder";
 
 type Props = {
   purchaseOrders: PurchaseOrder[];
+   language: "en" | "ar";
 };
 
-function PurchaseOrdersTable({ purchaseOrders }: Props) {
+function PurchaseOrdersTable({ purchaseOrders,language }: Props) {
+       const isArabic = language === "ar";
   return (
-    <table className="products-table">
+    <table className="table-wrapper">
       <thead>
         <tr>
-          <th>Total Amount</th>
-          <th>Total Quantity</th>
-          <th>Items Count</th>
-          <th>Created At</th>
-           <th>Transaction ID</th>
+         <th>{isArabic ? "إجمالي المبلغ" : "Total Amount"}</th>
+         <th>{isArabic ? "إجمالي الكمية" : "Total Quantity"}</th>
+         <th>{isArabic ? "عدد الأصناف" : "Items Count"}</th>
+         <th>{isArabic ? "تاريخ الإنشاء" : "Created At"}</th>
+         <th>{isArabic ? "رقم المعاملة" : "Transaction ID"}</th>
         </tr>
       </thead>
 

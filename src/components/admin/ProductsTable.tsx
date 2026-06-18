@@ -1,21 +1,32 @@
 import type { Product } from "../../types/product";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { useState } from "react";
+
+import { getCookie, setCookie } from "../../utils/cookieUtils";
+
+
+
 type Props = {
   products: Product[];
+   language: "en" | "ar";
 };
 
-function ProductsTable({ products }: Props) {
+
+function ProductsTable({ products, language }: Props) {
+
+        const isArabic = language === "ar";
+
   return (
 
-    <table className="products-table">
+    <table className="table-wrapper">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Price</th>
-           <th>store Price</th>
-           <th>stock Quantity</th>
-          <th>Description</th>
-          <th>Actions</th>
+             <th>{isArabic ? "الاسم" : "Name"}</th>
+              <th>{isArabic ? "السعر" : "Price"}</th>
+              <th>{isArabic ? "سعر المتجر" : "Store Price"}</th>
+              <th>{isArabic ? "الكمية المتوفرة" : "Stock Quantity"}</th>
+              <th>{isArabic ? "الوصف" : "Description"}</th>
+              <th>{isArabic ? "الإجراءات" : "Actions"}</th>
         </tr>
       </thead>
 

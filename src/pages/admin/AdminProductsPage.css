@@ -23,7 +23,7 @@
   width: 100%;
   padding: 12px;
   margin-bottom: 8px;
-  text-align: left;
+  text-align: start;
   border: 1px solid #ddd;
    background: transparent;
     color: #d1d5db;
@@ -38,6 +38,7 @@
 .admin-content {
   flex: 1;
   padding: 20px;
+
 }
 
 .admin-content-header {
@@ -46,20 +47,25 @@
   align-items: center;
 }
 
-.products-table {
+.table-wrapper {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+
+
+
 }
 
-.products-table th,
-.products-table td {
+.table-wrapper th,
+.table-wrapper td {
   border: 1px solid #ddd;
   padding: 12px;
-  text-align: left;
+  text-align: start;
+
+
 }
 
-.products-table th {
+.table-wrapper th {
   background-color: #f7f7f7;
 }
 
@@ -78,8 +84,9 @@
     position: static;
   }
 
-  .products-table {
+  .table-wrapper {
     font-size: 14px;
+     min-width: 1000px;
   }
 }
 
@@ -101,7 +108,7 @@
     border-radius: 8px;
     padding: 12px 14px;
     margin-bottom: 8px;
-    text-align: left;
+    text-align: start;
     cursor: pointer;
     font-size: 15px;
 }
@@ -136,7 +143,7 @@
   border: none;
   border-radius: 8px;
   padding: 12px 14px;
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   font-size: 15px;
   background: transparent;
@@ -172,7 +179,10 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+
+
 }
+
 
 .welcome-text {
   margin: 0;
@@ -186,6 +196,8 @@
   background: #f3f4f6;
   border-radius: 10px;
   padding: 4px;
+
+
 }
 
 .lang-btn {
@@ -196,9 +208,42 @@
   cursor: pointer;
   font-weight: 600;
   color: #6b7280;
+
+
 }
 
 .lang-btn.active {
   background: #2563eb;
   color: white;
+}
+
+
+.action-button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.action-button:active {
+    transform: translateY(0);
+}
+
+.action-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.rtl-topbar {
+  flex-direction: row-reverse;
 }

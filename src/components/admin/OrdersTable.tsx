@@ -1,26 +1,29 @@
 import type { Order } from "../../types/product";
+import { getCookie, setCookie } from "../../utils/cookieUtils";
 
 type Props = {
   orders: Order[];
+   language: "en" | "ar";
 };
 
-function OrdersTable({ orders }: Props) {
+function OrdersTable({ orders, language } : Props) {
+     const isArabic = language === "ar";
   return (
-    <table className="products-table">
+    <table className="table-wrapper">
       <thead>
         <tr>
-          <th>Customer Name</th>
-          <th>Phone</th>
-          <th>Area</th>
-          <th>Address</th>
-          <th>Status</th>
-          <th>Total Price</th>
-          <th>Payment Status</th>
-          <th>Payment Method</th>
-          <th>Paid</th>
-          <th>Remaining</th>
-          <th>Discount</th>
-          <th>Created At</th>
+          <th>{isArabic ? "اسم العميل" : "Customer Name"}</th>
+           <th>{isArabic ? "رقم الهاتف" : "Phone"}</th>
+           <th>{isArabic ? "المنطقة" : "Area"}</th>
+           <th>{isArabic ? "العنوان" : "Address"}</th>
+           <th>{isArabic ? "الحالة" : "Status"}</th>
+           <th>{isArabic ? "إجمالي السعر" : "Total Price"}</th>
+           <th>{isArabic ? "حالة الدفع" : "Payment Status"}</th>
+           <th>{isArabic ? "طريقة الدفع" : "Payment Method"}</th>
+           <th>{isArabic ? "المبلغ المدفوع" : "Paid"}</th>
+           <th>{isArabic ? "المبلغ المتبقي" : "Remaining"}</th>
+           <th>{isArabic ? "الخصم" : "Discount"}</th>
+           <th>{isArabic ? "تاريخ الإنشاء" : "Created At"}</th>
         </tr>
       </thead>
 
@@ -38,7 +41,7 @@ function OrdersTable({ orders }: Props) {
             <td>{order.paidAmount}</td>
             <td>{order.remainingAmount}</td>
             <td>{order.discountAmount}</td>
-            <td>{order.createdAt}</td>
+            <td>{new Date(order.createdAt).toLocaleString()}</td>
           </tr>
         ))}
       </tbody>

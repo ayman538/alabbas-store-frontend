@@ -63,6 +63,7 @@ function AdminProductsPage() {
 
     document.documentElement.lang = newLanguage;
     document.documentElement.dir = newLanguage === "ar" ? "rtl" : "ltr";
+
   }
 
   useEffect(() => {
@@ -160,7 +161,7 @@ useEffect(() => {
      <div className="admin-products-page">
         <aside className="admin-sidebar">
 <div className="sidebar-brand">
-  <h2>EL ABBAS</h2>
+  <h2>{isArabic ? "الـعبـاس" : "EL ABBAS"}</h2>
 </div>
 
          <CategorySidebar
@@ -233,39 +234,39 @@ useEffect(() => {
             <>
               <div className="admin-content-header">
                  <h2>{isArabic ? selectedCategory?.nameAr : selectedCategory?.nameEn}</h2>
-                <button>{isArabic ? "إضافة منتج جديد" : "Add New Product"}</button>
+                <button className="action-button">{isArabic ? "إضافة منتج جديد" : "Add New Product"}</button>
               </div>
 
               {loadingCategories && <p>Loading categories...</p>}
               {loadingProducts && <p>Loading products...</p>}
 
-              <ProductsTable products={products} />
+             <ProductsTable products={products} language={language} />
             </>
           )}
 
           {selectedMenuItem === "orders" && (
             <>
               <div className="admin-content-header">
-                <h2>Orders</h2>
-                <button>Create New Order</button>
+                <h2>{isArabic ? "الطلبات" : "Orders"}</h2>
+                <button className="action-button">  {isArabic ? "إنشاء طلب جديد" : "Create New Order"}</button>
               </div>
 
               {loadingOrders && <p>Loading orders...</p>}
 
-              <OrdersTable orders={orders} />
+              <OrdersTable orders={orders} language={language} />
             </>
           )}
 
       {selectedMenuItem === "purchaseOrders" && (
         <>
           <div className="admin-content-header">
-            <h2>Purchase Orders</h2>
-            <button>Create Purchase Order</button>
+            <h2>{isArabic ? "طلبات الشراء" : "Purchase Orders"}</h2>
+            <button className="action-button">  {isArabic ? "إنشاء طلب شراء" : "Create Purchase Order"}</button>
           </div>
 
           {loadingPurchaseOrders && <p>Loading purchase orders...</p>}
 
-          <PurchaseOrdersTable purchaseOrders={purchaseOrders} />
+          <PurchaseOrdersTable purchaseOrders={purchaseOrders}  language={language} />
         </>
       )}
 
