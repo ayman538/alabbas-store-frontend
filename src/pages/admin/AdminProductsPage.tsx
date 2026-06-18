@@ -10,11 +10,20 @@ import CategorySidebar from "../../components/admin/CategorySidebar";
 import ProductsTable from "../../components/admin/ProductsTable";
 import "./AdminProductsPage.css";
 
+
 import { getOrders } from "../../api/orderApi";
 import OrdersTable from "../../components/admin/OrdersTable";
 
 import { getPurchaseOrders } from "../../api/purchaseOrderApi";
 import PurchaseOrdersTable from "../../components/admin/PurchaseOrdersTable"
+
+import { getCookie, setCookie } from "../../utils/cookieUtils";
+import { getUsernameFromToken } from "../../utils/jwtUtils";
+
+
+
+
+
 
 function AdminProductsPage() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -37,6 +46,24 @@ function AdminProductsPage() {
 
   const [purchaseOrders, setPurchaseOrders] = useState<PurchaseOrder[]>([]);
   const [loadingPurchaseOrders, setLoadingPurchaseOrders] = useState(false);
+
+
+  const [language, setLanguage] = useState<"en" | "ar">(
+    (getCookie("lang") as "en" | "ar") ?? "en"
+  );
+
+  const username = getUsernameFromToken(getCookie("token"));
+  const isArabic = language === "ar";
+
+
+
+  function handleLanguageChange(newLanguage: "en" | "ar") {
+    setLanguage(newLanguage);
+    setCookie("lang", newLanguage);
+
+    document.documentElement.lang = newLanguage;
+    document.documentElement.dir = newLanguage === "ar" ? "rtl" : "ltr";
+  }
 
   useEffect(() => {
     async function loadCategories() {
@@ -153,7 +180,7 @@ useEffect(() => {
                       }
                       onClick={() => setSelectedMenuItem("orders")}
                     >
-                       🧾 Sales Orders
+                       🧾 {isArabic ? "طلبات البيع" : "Sales Orders"}
                     </button>
           <button
             className={
@@ -163,20 +190,50 @@ useEffect(() => {
             }
             onClick={() => setSelectedMenuItem("purchaseOrders")}
           >
-🚚  Purchase Orders
+🚚  {isArabic ? "طلبات الشراء" : "Purchase Orders"}
           </button>
  <div className="sidebar-spacer"></div>
   <button className="logout-button">
-     🚪 Logout
+     🚪 {isArabic ? " تسجيل الخروج" : "Logout"}
    </button>
 
         </aside>
         <main className="admin-content">
+
+
+
+        <div className="admin-topbar">
+          <div>
+            <p className="welcome-text">
+              {isArabic ? `مرحباً ${username}` : `Welcome ${username}`}
+            </p>
+          </div>
+
+          <div className="language-switch">
+            <button
+              className={language === "en" ? "lang-btn active" : "lang-btn"}
+              onClick={() => handleLanguageChange("en")}
+            >
+              EN
+            </button>
+
+            <button
+              className={language === "ar" ? "lang-btn active" : "lang-btn"}
+              onClick={() => handleLanguageChange("ar")}
+            >
+              AR
+            </button>
+          </div>
+        </div>
+
+
+
+
           {selectedMenuItem === "products" && (
             <>
               <div className="admin-content-header">
-                <h2>{selectedCategory?.nameEn ?? "Products"}</h2>
-                <button>Add New Product</button>
+                 <h2>{isArabic ? selectedCategory?.nameAr : selectedCategory?.nameEn}</h2>
+                <button>{isArabic ? "إضافة منتج جديد" : "Add New Product"}</button>
               </div>
 
               {loadingCategories && <p>Loading categories...</p>}

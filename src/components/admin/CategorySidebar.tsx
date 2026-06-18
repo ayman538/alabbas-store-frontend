@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Category } from "../../types/product";
+import { getCookie, setCookie } from "../../utils/cookieUtils";
 
 type Props = {
   categories: Category[];
@@ -8,6 +9,7 @@ type Props = {
   onCategorySelect: (categoryId: number) => void;
 };
 
+
 function CategorySidebar({
   categories,
   selectedCategoryId,
@@ -15,14 +17,18 @@ function CategorySidebar({
   onCategorySelect,
 }: Props) {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
+ const [language, setLanguage] = useState<"en" | "ar">(
+    (getCookie("lang") as "en" | "ar") ?? "en"
+  );
 
+  const isArabic = language === "ar";
   return (
     <>
       <button
         className="sidebar-section-title"
         onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
       >
-        {isCategoriesOpen ? "▼" : "▶"} 📂   Categories
+      {isCategoriesOpen ? "▼" : "▶"} 📂   {isArabic ? "الاصناف" : "Categories"}
 
       </button>
 
@@ -37,7 +43,9 @@ function CategorySidebar({
             }
             onClick={() => onCategorySelect(category.id)}
           >
-            {category.nameEn}
+
+                {isArabic ? category?.nameAr : category?.nameEn}
+
           </button>
 
 
