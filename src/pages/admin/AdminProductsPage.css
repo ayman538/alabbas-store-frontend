@@ -1,0 +1,167 @@
+.admin-products-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+ width: 260px;
+  min-height: 100vh;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+     display: flex;
+     flex-direction: column;
+   background: #111827;
+   color: white;
+   padding: 20px 14px;
+  overflow-y: auto;
+}
+
+.category-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+   background: transparent;
+    color: #d1d5db;
+  cursor: pointer;
+}
+
+.category-button.active {
+  background-color: #222;
+  color: white;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.admin-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.products-table th,
+.products-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.products-table th {
+  background-color: #f7f7f7;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .admin-products-page {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    min-height: auto;
+    height: auto;
+    position: static;
+  }
+
+  .products-table {
+    font-size: 14px;
+  }
+}
+
+.icon-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.icon-button:hover {
+  opacity: 0.7;
+}
+
+.sidebar-section-title ,.category-button{
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.sidebar-section-title {
+  background: transparent;
+  color: #d1d5db;
+  font-weight: 700;
+}
+
+.category-button:hover,
+.sidebar-section-title:hover {
+  background: #1f2937;
+  color: white;
+}
+
+.category-button.active {
+  background: #2563eb;
+  color: white;
+}
+
+.sidebar-sub-item {
+  padding-left: 28px;
+  font-size: 14px;
+}
+.sidebar-spacer {
+  flex: 1;
+}
+.logout-button {
+  margin-top: auto;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+  background: transparent;
+  color: #fca5a5;
+}
+.logout-button:hover {
+  background: #7f1d1d;
+  color: white;
+}
+
+.sidebar-brand {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.sidebar-brand h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.sidebar-brand p {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #9ca3af;
+}
