@@ -20,10 +20,16 @@
 
 .category-button {
   display: block;
+    min-height: 48px;
+      font-family: "Cairo", sans-serif;
   width: 100%;
   padding: 12px;
   margin-bottom: 8px;
   text-align: start;
+    align-items: center;
+  justify-content: flex-end;
+  font-size: 17px;
+  font-weight: 600;
   border: 1px solid #ddd;
    background: transparent;
     color: #d1d5db;
@@ -104,6 +110,7 @@
 
 .sidebar-section-title ,.category-button{
     width: 100%;
+    font-family: "Cairo", sans-serif;
     border: none;
     border-radius: 8px;
     padding: 12px 14px;
@@ -246,4 +253,43 @@
 
 .rtl-topbar {
   flex-direction: row-reverse;
+}
+
+
+
+
+
+
+
+
+
+.Home-button {
+  width: 100%;
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding: 0 18px;
+
+  color: #f1f5f9;
+  font-size: 17px;
+  font-weight: 600;
+
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+
+  transition: all 0.2s ease;
+}
+
+.Home-button:hover {
+  background: #14213d;
+}
+
+.Home-button.active {
+  background: #3067e3;
+  color: white;
+  font-weight: 700;
 }

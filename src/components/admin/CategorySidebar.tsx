@@ -43,7 +43,7 @@ function CategorySidebar({
             onClick={() => onCategorySelect(category.id)}
           >
 
-                {isArabic ? category?.nameAr : category?.nameEn}
+         {isArabic ? category?.nameAr : category?.nameEn}
 
           </button>
 
