@@ -168,6 +168,7 @@ useEffect(() => {
            categories={categories}
            selectedCategoryId={selectedCategoryId ?? 0}
             isProductsActive={selectedMenuItem === "products"}
+              language={language}
            onCategorySelect={(categoryId) => {
              setSelectedMenuItem("products");
              setSelectedCategoryId(categoryId);

@@ -7,6 +7,7 @@ type Props = {
   selectedCategoryId: number;
   isProductsActive: boolean;
   onCategorySelect: (categoryId: number) => void;
+  language: "en" | "ar";
 };
 
 
@@ -15,12 +16,9 @@ function CategorySidebar({
   selectedCategoryId,
   isProductsActive,
   onCategorySelect,
+  language,
 }: Props) {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
- const [language, setLanguage] = useState<"en" | "ar">(
-    (getCookie("lang") as "en" | "ar") ?? "en"
-  );
-
   const isArabic = language === "ar";
 
   return (
