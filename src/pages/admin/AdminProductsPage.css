@@ -21,7 +21,7 @@
 .category-button {
   display: block;
     min-height: 48px;
-      font-family: "Cairo", sans-serif;
+   font-family: "Cairo", sans-serif;
   width: 100%;
   padding: 12px;
   margin-bottom: 8px;
@@ -262,34 +262,3 @@
 
 
 
-
-.Home-button {
-  width: 100%;
-  min-height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  padding: 0 18px;
-
-  color: #f1f5f9;
-  font-size: 17px;
-  font-weight: 600;
-
-  border-radius: 12px;
-  border: none;
-  background: transparent;
-
-  transition: all 0.2s ease;
-}
-
-.Home-button:hover {
-  background: #14213d;
-}
-
-.Home-button.active {
-  background: #3067e3;
-  color: white;
-  font-weight: 700;
-}
