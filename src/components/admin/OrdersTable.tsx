@@ -1,6 +1,12 @@
 import type { Order } from "../../types/product";
 import { getCookie, setCookie } from "../../utils/cookieUtils";
 
+import {
+  paymentMethodTranslations,
+  paymentStatusTranslations,
+  orderStatusTranslations,
+} from "../../constants/orderTranslations";
+
 type Props = {
   orders: Order[];
    language: "en" | "ar";
@@ -34,14 +40,26 @@ function OrdersTable({ orders, language } : Props) {
             <td>{order.customerPhone}</td>
             <td>{order.customerArea}</td>
             <td>{order.customerAddress}</td>
-            <td>{order.status}</td>
+             <td>
+                   {isArabic
+                     ? orderStatusTranslations[order.status]
+                     : order.status}
+                 </td>
             <td>{order.totalPrice}</td>
-            <td>{order.paymentStatus}</td>
-            <td>{order.paymentMethod}</td>
+          <td>
+                  {isArabic
+                    ? paymentStatusTranslations[order.paymentStatus]
+                    : order.paymentStatus}
+                </td>
+           <td>
+                  {isArabic
+                    ? paymentMethodTranslations[order.paymentMethod]
+                    : order.paymentMethod}
+                </td>
             <td>{order.paidAmount}</td>
             <td>{order.remainingAmount}</td>
             <td>{order.discountAmount}</td>
-            <td>{new Date(order.createdAt).toLocaleString()}</td>
+            <td dir="ltr">{new Date(order.createdAt).toLocaleString()}</td>
           </tr>
         ))}
       </tbody>

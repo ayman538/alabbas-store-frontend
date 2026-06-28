@@ -25,7 +25,7 @@ function PurchaseOrdersTable({ purchaseOrders,language }: Props) {
             <td>{purchaseOrder.totalAmount}</td>
             <td>{purchaseOrder.totalQuantity}</td>
             <td>{purchaseOrder.itemsCount}</td>
-             <td>{new Date(purchaseOrder.createdAt).toLocaleString()}</td>
+             <td dir="ltr">{new Date(purchaseOrder.createdAt).toLocaleString()}</td>
               <td>{purchaseOrder.transactionId}</td>
 
           </tr>

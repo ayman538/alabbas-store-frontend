@@ -1,10 +1,10 @@
-import { useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 import { login } from "../../api/authApi";
-import { setCookie } from "../../utils/cookieUtils";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
+import { getCookie, removeCookie, setCookie } from "../../utils/cookieUtils";
 
 
 
@@ -12,7 +12,9 @@ import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
     const navigate = useNavigate();
-  const [language, setLanguage] = useState<"en" | "ar">("en");
+   const [language, setLanguage] = useState<"en" | "ar">(
+     (getCookie("lang") as "en" | "ar") ?? "en"
+   );
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -28,8 +30,13 @@ function LoginPage() {
       setPassword("");
       setError("");
 
-    document.documentElement.dir = newLanguage === "ar" ? "rtl" : "ltr";
   }
+
+useEffect(() => {
+  document.documentElement.lang = language;
+  document.documentElement.dir =
+    language === "ar" ? "rtl" : "ltr";
+}, [language]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();

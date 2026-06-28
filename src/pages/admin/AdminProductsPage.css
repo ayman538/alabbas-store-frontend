@@ -55,24 +55,79 @@
 
 .table-wrapper {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin-top: 20px;
-
-
-
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background: white;
 }
 
 .table-wrapper th,
 .table-wrapper td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: start;
-
-
+      padding: 14px 16px;
+  vertical-align: middle;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
 }
 
+/* Header */
 .table-wrapper th {
-  background-color: #f7f7f7;
+  background: linear-gradient(135deg, #08152f, #0c1f45);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+}
+
+/* Zebra rows */
+.table-wrapper tbody tr:nth-child(odd) {
+  background-color: #f8fafc;
+}
+
+.table-wrapper tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* Hover effect */
+.table-wrapper tbody tr:hover {
+  background-color: #eaf2ff;
+  transition: background-color 0.2s ease;
+}
+
+/* Last row */
+.table-wrapper tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Data cells */
+.table-wrapper td {
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.table-wrapper td button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+
+.product-image {
+   width: 60px;
+   height: 60px;
+   object-fit: cover;
+   border-radius: 8px;
+   border: 1px solid #e5e7eb;
+}
+
+.table-wrapper td button:hover {
+  background-color: #dbeafe;
 }
 
 /* Responsive for mobile */

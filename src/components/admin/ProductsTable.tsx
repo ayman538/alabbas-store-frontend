@@ -26,18 +26,32 @@ function ProductsTable({ products, language }: Props) {
               <th>{isArabic ? "سعر المتجر" : "Store Price"}</th>
               <th>{isArabic ? "الكمية المتوفرة" : "Stock Quantity"}</th>
               <th>{isArabic ? "الوصف" : "Description"}</th>
+              <th>{isArabic ? "الصورة" : "Image"}</th>
               <th>{isArabic ? "الإجراءات" : "Actions"}</th>
+
         </tr>
       </thead>
 
       <tbody>
         {products.map((product) => (
           <tr key={product.id}>
-            <td>{product.nameEn}</td>
+            <td>{isArabic ? product.nameAr : product.nameEn}</td>
             <td>{product.price}</td>
             <td>{product.storePrice}</td>
             <td>{product.stockQuantity}</td>
-            <td>{product.description}</td>
+            <td>{isArabic ? product.descriptionAr : product.description}</td>
+        <td>
+          {product.uploadedImageUrl ? (
+            <img
+              src={product.uploadedImageUrl}
+              alt={isArabic ? product.nameAr : product.nameEn}
+              className="product-image"
+            />
+          ) : (
+            <span>{isArabic ? "لا توجد صورة" : "No Image"}</span>
+          )}
+        </td>
+
 
            <td>
              <button className="icon-button">
@@ -50,7 +64,7 @@ function ProductsTable({ products, language }: Props) {
            </td>
           </tr>
         ))}
-      </tbody>
+    </tbody>
     </table>
   );
 }

@@ -31,8 +31,16 @@ function AdminLayout() {
       setCategories(data);
     }
 
+
     loadCategories();
   }, []);
+
+
+useEffect(() => {
+  document.documentElement.lang = language;
+  document.documentElement.dir =
+    language === "ar" ? "rtl" : "ltr";
+}, [language]);
 
   function handleLanguageChange(newLanguage: "en" | "ar") {
     setLanguage(newLanguage);
