@@ -15,6 +15,9 @@ function PurchaseOrdersPage() {
   const [purchaseOrders, setPurchaseOrders] = useState<PurchaseOrder[]>([]);
   const [loadingPurchaseOrders, setLoadingPurchaseOrders] = useState(false);
   const [error, setError] = useState("");
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const pageSize = 10;
 
   useEffect(() => {
     async function loadPurchaseOrders() {
@@ -22,8 +25,9 @@ function PurchaseOrdersPage() {
         setLoadingPurchaseOrders(true);
         setError("");
 
-        const data = await getPurchaseOrders();
+        const data = await getPurchaseOrders(page, pageSize);
         setPurchaseOrders(data.content);
+        setTotalPages(data.totalPages);
       } catch {
         setError(isArabic ? "فشل تحميل طلبات الشراء" : "Failed to load purchase orders");
       } finally {
@@ -32,7 +36,7 @@ function PurchaseOrdersPage() {
     }
 
     loadPurchaseOrders();
-  }, [isArabic]);
+  }, [ page]);
 
   return (
     <>
@@ -51,6 +55,31 @@ function PurchaseOrdersPage() {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <PurchaseOrdersTable purchaseOrders={purchaseOrders} language={language} />
+      { totalPages > 1 && (
+                   <div className="pagination">
+                     <button
+                       className="pagination-button"
+                       disabled={page === 0}
+                       onClick={() => setPage(page - 1)}
+                     >
+                       {isArabic ? "السابق" : "Previous"}
+                     </button>
+
+                     <span className="pagination-info">
+                       {isArabic
+                         ? `صفحة ${page + 1} من ${totalPages}`
+                         : `Page ${page + 1} of ${totalPages}`}
+                     </span>
+
+                     <button
+                       className="pagination-button"
+                       disabled={page + 1 >= totalPages}
+                       onClick={() => setPage(page + 1)}
+                     >
+                       {isArabic ? "التالي" : "Next"}
+                     </button>
+                   </div>
+                 )}
     </>
   );
 }

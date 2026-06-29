@@ -3,8 +3,8 @@ import type { Order } from "../types/order";
 import type {  PageResponse } from "../types/common";
 
 export async function getOrders(
-  page = 0,
-  size = 100
+  page : number,
+  size : number
 ): Promise<PageResponse<Order>> {
   const response = await apiClient.get("/private/orders", {
     params: {

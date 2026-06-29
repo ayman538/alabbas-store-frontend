@@ -20,7 +20,10 @@ function ProductsPage() {
   const [error, setError] = useState("");
   const { language, categories } = useOutletContext<AdminOutletContext>();
   const { categoryId } = useParams();
-    const isArabic = language === "ar";
+  const isArabic = language === "ar";
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const pageSize = 10;
 
 
 
@@ -28,6 +31,10 @@ function ProductsPage() {
   const selectedCategory = categories.find(
     (category) => category.id === Number(categoryId)
   );
+
+useEffect(() => {
+  setPage(0);
+}, [categoryId]);
 
   useEffect(() => {
     async function loadProducts() {
@@ -39,8 +46,10 @@ function ProductsPage() {
         setLoadingProducts(true);
         setError("");
 
-        const data = await getProductsByCategory(Number(categoryId));
+        const data = await getProductsByCategory(Number(categoryId), page, pageSize);
+
         setProducts(data.content);
+        setTotalPages(data.totalPages);
       } catch {
         setError(isArabic ? "فشل تحميل المنتجات" : "Failed to load products");
       } finally {
@@ -49,7 +58,7 @@ function ProductsPage() {
     }
 
     loadProducts();
-  }, [categoryId, isArabic]);
+  }, [categoryId,page]);
 
   return (
     <>
@@ -71,9 +80,33 @@ function ProductsPage() {
       {loadingProducts && <p>{isArabic ? "جاري تحميل المنتجات..." : "Loading products..."}</p>}
 
       {error && <p style={{ color: "red" }}>{error}</p>}
+     {categoryId && <ProductsTable products={products} language={language} />}
+     {categoryId && totalPages > 1 && (
+       <div className="pagination">
+         <button
+           className="pagination-button"
+           disabled={page === 0}
+           onClick={() => setPage(page - 1)}
+         >
+           {isArabic ? "السابق" : "Previous"}
+         </button>
 
-      {categoryId && <ProductsTable products={products} language={language} />}
-    </>
+         <span className="pagination-info">
+           {isArabic
+             ? `صفحة ${page + 1} من ${totalPages}`
+             : `Page ${page + 1} of ${totalPages}`}
+         </span>
+
+         <button
+           className="pagination-button"
+           disabled={page + 1 >= totalPages}
+           onClick={() => setPage(page + 1)}
+         >
+           {isArabic ? "التالي" : "Next"}
+         </button>
+       </div>
+     )}    </>
+
   );
 }
 
