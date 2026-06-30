@@ -26,6 +26,7 @@ function ProductsTable({ products, language }: Props) {
               <th>{isArabic ? "سعر المتجر" : "Store Price"}</th>
               <th>{isArabic ? "الكمية المتوفرة" : "Stock Quantity"}</th>
               <th>{isArabic ? "الوصف" : "Description"}</th>
+              <th>{isArabic ? "كود المنتج" : "SKU"}</th>
                <th>{isArabic ? "الشركة المصنعة" : "Manufacturer"}</th>
               <th>{isArabic ? "الصورة" : "Image"}</th>
               <th>{isArabic ? "الإجراءات" : "Actions"}</th>
@@ -41,6 +42,7 @@ function ProductsTable({ products, language }: Props) {
             <td>{product.storePrice}</td>
             <td>{product.stockQuantity}</td>
             <td>{isArabic ? product.descriptionAr : product.description}</td>
+             <td>{product.sku}</td>
              <td>{isArabic ? product.companyAr : product.companyEn}</td>
 
         <td>

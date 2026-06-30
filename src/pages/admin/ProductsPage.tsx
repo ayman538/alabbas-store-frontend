@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import type { Product } from "../../types/product";
-import { getProductsByCategory } from "../../api/productApi";
+import { getProductsByCategory,searchProductsByCategory } from "../../api/productApi";
 import ProductsTable from "../../components/admin/ProductsTable";
 import type { Category } from "../../types/category";
 
@@ -25,7 +25,12 @@ function ProductsPage() {
   const [totalPages, setTotalPages] = useState(0);
   const pageSize = 10;
 
-
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchName, setSearchName] = useState("");
+  const [stockQuantity, setStockQuantity] = useState("");
+  const hasFilters =
+  searchName.trim() !== "" ||
+  stockQuantity.trim() !== "";
 
 
   const selectedCategory = categories.find(
@@ -46,7 +51,21 @@ useEffect(() => {
         setLoadingProducts(true);
         setError("");
 
-        const data = await getProductsByCategory(Number(categoryId), page, pageSize);
+        const query = searchName.trim();
+
+      const data = hasFilters
+        ? await searchProductsByCategory(
+            Number(categoryId),
+            query,
+            stockQuantity,
+            page,
+            pageSize
+          )
+        : await getProductsByCategory(
+            Number(categoryId),
+            page,
+            pageSize
+          );
 
         setProducts(data.content);
         setTotalPages(data.totalPages);
@@ -58,7 +77,7 @@ useEffect(() => {
     }
 
     loadProducts();
-  }, [categoryId,page]);
+  }, [categoryId,page,searchName, stockQuantity]);
 
   return (
     <>
@@ -80,6 +99,42 @@ useEffect(() => {
       {loadingProducts && <p>{isArabic ? "جاري تحميل المنتجات..." : "Loading products..."}</p>}
 
       {error && <p style={{ color: "red" }}>{error}</p>}
+
+
+    <div className="filter-section">
+      <button
+        className="filter-toggle"
+        onClick={() => setIsSearchOpen(!isSearchOpen)}
+
+      >
+        {isSearchOpen
+          ? isArabic
+            ? "▴ إخفاء البحث"
+            : "▴ Hide Search"
+          : isArabic
+            ? "▾ البحث والفلاتر"
+            : "▾ Search & Filters"}
+      </button>
+
+      {isSearchOpen && (
+        <div className="filter-content">
+          <input
+            value={searchName}
+            onChange={(event) => setSearchName(event.target.value)}
+            placeholder={isArabic ? "اسم المنتج" : "Product name"}
+          />
+
+          <input
+            type="number"
+            value={stockQuantity}
+            onChange={(event) => setStockQuantity(event.target.value)}
+            placeholder={isArabic ? "الكمية المتوفرة" : "Stock quantity"}
+          />
+        </div>
+      )}
+    </div>
+
+
      {categoryId && <ProductsTable products={products} language={language} />}
      {categoryId && totalPages > 1 && (
        <div className="pagination">

@@ -356,3 +356,39 @@
    font-weight: 600;
    color: #334155;
 }
+
+
+
+.filter-section {
+  margin: 16px 0 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.filter-toggle {
+  width: 100%;
+  border: none;
+  background: #f9fafb;
+  padding: 14px 16px;
+  text-align: start;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 12px;
+  font-family: "Cairo", sans-serif;
+}
+
+.filter-content {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-content input {
+  min-width: 220px;
+  padding: 11px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
