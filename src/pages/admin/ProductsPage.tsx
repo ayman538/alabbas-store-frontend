@@ -102,34 +102,37 @@ useEffect(() => {
 
 
     <div className="filter-section">
-      <button
-        className="filter-toggle"
+       {categoryId && (
+           <button className="filter-toggle"
         onClick={() => setIsSearchOpen(!isSearchOpen)}
-
       >
         {isSearchOpen
           ? isArabic
             ? "▴ إخفاء البحث"
             : "▴ Hide Search"
           : isArabic
-            ? "▾ البحث والفلاتر"
-            : "▾ Search & Filters"}
+          ? "✚ البحث والفلاتر"
+            : "✚ Search & Filters"}
       </button>
+        )}
 
       {isSearchOpen && (
         <div className="filter-content">
+          {categoryId && (
           <input
             value={searchName}
             onChange={(event) => setSearchName(event.target.value)}
             placeholder={isArabic ? "اسم المنتج" : "Product name"}
           />
-
+            )}
+          {categoryId && (
           <input
             type="number"
             value={stockQuantity}
             onChange={(event) => setStockQuantity(event.target.value)}
             placeholder={isArabic ? "الكمية المتوفرة" : "Stock quantity"}
           />
+            )}
         </div>
       )}
     </div>

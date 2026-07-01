@@ -67,7 +67,7 @@ useEffect(() => {
     <div className="admin-products-page">
       <aside className="admin-sidebar">
         <div className="sidebar-brand">
-          <h2>{isArabic ? "الـعبـاس" : "EL ABBAS"}</h2>
+          <h2>{isArabic ? "  الـعبـاس" : "EL ABBAS"}</h2>
         </div>
 
         <CategorySidebar

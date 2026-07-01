@@ -54,7 +54,19 @@ function PurchaseOrdersPage() {
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
+
+      ///HYG
+
+
+
+
+
+
       <PurchaseOrdersTable purchaseOrders={purchaseOrders} language={language} />
+
+
+
+
       { totalPages > 1 && (
                    <div className="pagination">
                      <button

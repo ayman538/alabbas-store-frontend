@@ -290,6 +290,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    font-family: "Cairo", sans-serif;
 }
 
 .action-button:hover {
@@ -384,6 +385,7 @@
   padding: 16px;
   align-items: center;
   flex-wrap: wrap;
+  font-family: "Cairo", sans-serif;
 }
 
 .filter-content input {
@@ -391,4 +393,121 @@
   padding: 11px 12px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
+}
+
+.filter-content input,
+.filter-content select {
+  min-width: 220px;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.filter-content input:focus,
+.filter-content select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.filter-content select {
+  cursor: pointer;
+   appearance: none;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+
+   background-image:
+     linear-gradient(45deg, transparent 50%, #334155 50%),
+     linear-gradient(135deg, #334155 50%, transparent 50%);
+   background-position:
+     calc(100% - 18px) 17px,
+     calc(100% - 12px) 17px;
+   background-size:
+     6px 6px,
+     6px 6px;
+   background-repeat: no-repeat;
+   padding-right: 36px;
+}
+
+.date-filter-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.date-filter-row input {
+  min-width: 220px;
+}
+
+/* Date picker icon */
+.filter-content input[type="date"] {
+  cursor: pointer;
+}
+
+.filter-content input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.filter-content input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+.filter-content select option {
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  background-color: #ffffff;
+  }
+
+  .filter-content select option:checked {
+    background-color: #2563eb;
+    color: white;
+  }
+
+.date-filter-row {
+ display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap;
+
+}
+
+.date-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.date-input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.date-input-group input {
+  min-width: 180px;
+}
+
+.secondary-button {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  background: #e5e7eb;
 }
